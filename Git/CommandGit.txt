@@ -1,0 +1,192 @@
+====================== INITIAL INSTALL =====================
+
+sudo apt install git
+git config --global user.name <USERNAME>
+git config --global user.email <MAIL>
+git config --global branch.autosetuprebase always
+git config --global color.ui true
+git config --global color.status auto
+git config --global color.branch auto
+git config --global core.editor nano
+git config --list
+
+ssh-keygen
+<COPY YOUR KEY IN GITHUB>
+
+cd <WORKINGDIR>
+
+==================== CREATE A LOCAL REPOSITORY THEN SYNCHRONIZE WITH GITHUB =======================
+
+mkdir tutorat
+cd tutorat
+git init
+ls
+echo 'This is my first README' > README
+ls
+git status -s
+git add .
+git status -s
+git commit -m 'This is my first commit'
+git log
+git remote add origin <YOUR SSH REPOSITORY>
+git push origin master 
+
+==================== NOW CLONE AND USE THE REMOTE REPOSITORY FROM GITHUB =====================
+
+mkdir TutoratClone
+cd TutoratClone/
+git clone <YOUR SSH REPOSITORY>
+ls
+cd <YOUR REPOSITORY DIRECTORY>
+ls
+touch script.py
+nano script.py 
+git add script.py 
+git status -s
+git commit -m 'My first code !'
+git log
+git show <GET THE SHA1 OF THE COMMIT>
+nano script.py 
+git status -s
+git add script.py 
+git status -s
+git commit --amend -m 'Hello message modified'
+git log
+git show <GET THE SHA1 OF THE COMMIT>
+
+PUSH TO SYNC WITH GITHUB
+
+git push origin master
+
+PULL TO UPDATE YOUR LOCAL REPOSITORY WITH REMOTE REPO
+
+git pull
+
+=================== USE STASH ( SEE GITHUB SHEET CHEAT ) =======================
+
+nano script.py 
+git status -s
+git stash
+git status -s
+git stash list
+git stash pop
+git status -s
+
+================== USE GIT TO MV AND RM FILES ====================
+
+mkdir src
+git mv script.py src
+git commit -a -m 'Dir struct modified'
+git status -s
+git mv script.py src/scriptRenamed.py
+git commit -a -m 'Rename file'
+git push origin origin master 
+
+git rm src/scriptRenamed.py 
+git commit -a -m "Removed script"
+git status -s
+
+================== USE CHECKOUT ====================
+
+nano src/script.py 
+git status -s
+git add .
+git commit -m "Create a script"
+git push origin master
+
+git status -s
+nano src/script.py 
+git status -s
+git checkout src/script.py
+git status -s
+rm src/script.py 
+git status -s
+git checkout src/script.py
+git status -s
+nano src/script.py 
+git status -s
+git add src/script.py 
+git status -s
+git checkout HEAD -- src/script.py
+git status -s
+cat .git/refs/heads/master 
+git log
+git log -2
+git reset --soft HEAD~
+cat .git/refs/heads/master 
+git log -2
+
+==================== MAKE TAG ===================
+
+nano src/script.py 
+git status -s
+git add .
+git commit -m "Create a script"
+git push origin master
+
+
+git tag -a 'Release_1_0' -m 'Tagged basic string operation code' HEAD
+git push origin tag Release_1_0
+git pull
+git status -s
+git tag -l
+git show Release_1_0
+git tag
+git tag -d Release_1_0
+
+================== MAKE PATCH ===================
+
+nano src/script.py 
+git add script.py
+git commit -m "My patch for the python script"
+git format-patch -1
+git status –s
+cat src/script.py
+
+================== APPLY PATCH ==================
+
+git pull
+git apply <0001-[].patch>
+git status -s
+cat src/script.py
+
+================== MANAGE BRANCH ================
+
+=== CREATE BRANCH ===
+
+git branch new_branch
+git branch
+
+=== CHANGE BRANCH ===
+
+git checkout new_branch
+
+=== CREATE AND CHANGE BRANCH ===
+
+git checkout -b test_branch
+
+=== ===
+
+git checkout master
+git branch
+
+=== RENAME BRANCH ===
+
+git branch -m new_branch renamed_branch
+git branch
+
+=== MERGE BRANCH ===
+
+git merge origin/renamed_branch
+
+=========== OTHER COMMAND ==============
+
+git fetch https://github.com/axel-polin/Tutorat
+
+=========== SHA1 COMMAND ===========
+
+echo "this is a test" | sha1sum 
+echo "test" | sha1sum 
+
+
+
