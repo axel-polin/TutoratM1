@@ -33,8 +33,6 @@ git push origin master
 
 ==================== NOW CLONE AND USE THE REMOTE REPOSITORY FROM GITHUB =====================
 
-mkdir TutoratClone
-cd TutoratClone/
 git clone <YOUR SSH REPOSITORY>
 ls
 cd <YOUR REPOSITORY DIRECTORY>
